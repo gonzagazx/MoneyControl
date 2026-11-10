@@ -43,4 +43,28 @@ public class TransactionService {
                 .map(TransactionResponse::from)
                 .toList();
     }
+
+    @Transactional
+    public TransactionResponse update(Long id, TransactionRequest request) {
+        Transaction transaction = transactionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Transação não encontrada: " + id));
+
+        Category category = categoryRepository.findById(request.categoryId())
+                .orElseThrow(() -> new ResourceNotFoundException(
+                        "Categoria não encontrada: " + request.categoryId()));
+
+        transaction.setDescription(request.description());
+        transaction.setAmount(request.amount());
+        transaction.setDate(request.date());
+        transaction.setCategory(category);
+
+        return TransactionResponse.from(transactionRepository.save(transaction));
+    }
+
+    public void delete(Long id) {
+        if (!transactionRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Transação não encontrada: " + id);
+        }
+        transactionRepository.deleteById(id);
+    }
 }

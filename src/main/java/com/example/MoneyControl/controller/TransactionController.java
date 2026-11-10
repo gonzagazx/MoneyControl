@@ -28,4 +28,15 @@ public class TransactionController {
     public List<TransactionResponse> findAll() {
         return transactionService.findAll();
     }
+
+    @PutMapping("/{id}")
+    public TransactionResponse update(@PathVariable Long id, @Valid @RequestBody TransactionRequest request) {
+        return transactionService.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        transactionService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

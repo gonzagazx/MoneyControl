@@ -1,0 +1,30 @@
+package com.example.MoneyControl.service;
+
+import com.example.MoneyControl.dto.SummaryResponse;
+import com.example.MoneyControl.entity.TransactionType;
+import com.example.MoneyControl.repository.TransactionRepository;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.YearMonth;
+
+@Service
+@RequiredArgsConstructor
+public class SummaryService {
+
+    private final TransactionRepository transactionRepository;
+
+    @Transactional(readOnly = true)
+    public SummaryResponse getMonthlySummary(YearMonth month) {
+        LocalDate start = month.atDay(1);
+        LocalDate end = month.atEndOfMonth();
+
+        BigDecimal income = transactionRepository.sumByTypeAndPeriod(TransactionType.INCOME, start, end);
+        BigDecimal expense = transactionRepository.sumByTypeAndPeriod(TransactionType.EXPENSE, start, end);
+
+        return new SummaryResponse(income, expense, income.subtract(expense));
+    }
+}

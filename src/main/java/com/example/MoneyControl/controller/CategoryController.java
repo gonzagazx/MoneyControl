@@ -28,4 +28,15 @@ public class CategoryController {
     public List<CategoryResponse> findAll() {
         return categoryService.findAll();
     }
+
+    @PutMapping("/{id}")
+    public CategoryResponse update(@PathVariable Long id, @Valid @RequestBody CategoryRequest request) {
+        return categoryService.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        categoryService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
