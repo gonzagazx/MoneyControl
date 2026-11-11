@@ -28,6 +28,33 @@
             </article>
         </section>
 
+        <section class="forms">
+            <article class="panel">
+                <h2>Nova categoria</h2>
+                <form id="categoryForm">
+                    <input type="text" id="categoryName" placeholder="Nome da categoria" maxlength="100" required>
+                    <select id="categoryType">
+                        <option value="EXPENSE">Despesa</option>
+                        <option value="INCOME">Receita</option>
+                    </select>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </article>
+
+            <article class="panel">
+                <h2>Nova transação</h2>
+                <form id="transactionForm">
+                    <input type="text" id="description" placeholder="Descrição" maxlength="150" required>
+                    <input type="number" id="amount" placeholder="Valor" step="0.01" min="0.01" required>
+                    <input type="date" id="date" required>
+                    <select id="categorySelect" required></select>
+                    <button type="submit">Adicionar</button>
+                </form>
+            </article>
+        </section>
+
+        <p id="message" class="message"></p>
+
         <section class="grid">
             <article class="panel">
                 <h2>Despesas por categoria</h2>
@@ -43,6 +70,7 @@
                             <th>Categoria</th>
                             <th>Data</th>
                             <th class="right">Valor</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody id="transactions"></tbody>

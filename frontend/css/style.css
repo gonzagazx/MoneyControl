@@ -1,125 +1,73 @@
-:root {
-    --bg: #0f1115;
-    --surface: #181b22;
-    --border: #262a33;
-    --text: #e5e7eb;
-    --muted: #9ca3af;
-    --positive: #34d399;
-    --negative: #f87171;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: "Segoe UI", Arial, sans-serif;
-}
-
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 32px;
-    border-bottom: 1px solid var(--border);
-}
-
-.topbar h1 {
-    margin: 0;
-    font-size: 1.25rem;
-}
-
-.topbar input {
-    background: var(--surface);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 8px 12px;
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 24px;
-}
-
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 24px;
-}
-
-.card,
-.panel {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 20px;
-}
-
-.card-label {
-    display: block;
-    color: var(--muted);
-    font-size: 0.85rem;
-    margin-bottom: 8px;
-}
-
-.card strong {
-    font-size: 1.6rem;
-}
-
-.grid {
+.forms {
     display: grid;
     grid-template-columns: 1fr 1.4fr;
     gap: 16px;
+    margin-bottom: 16px;
 }
 
-.panel h2 {
-    margin: 0 0 16px;
-    font-size: 1rem;
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-.panel canvas {
-    max-height: 300px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    text-align: left;
-    padding: 10px 8px;
-    border-bottom: 1px solid var(--border);
+form input,
+form select {
+    flex: 1 1 140px;
+    background: var(--bg);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 12px;
     font-size: 0.9rem;
 }
 
-th {
+form input::placeholder {
     color: var(--muted);
-    font-weight: 500;
 }
 
-.right {
-    text-align: right;
+button {
+    background: #6366f1;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
 }
 
-.positive {
+button:hover {
+    background: #4f46e5;
+}
+
+.btn-delete {
+    background: transparent;
+    color: var(--negative);
+    border: 1px solid var(--border);
+    padding: 4px 10px;
+    font-size: 0.8rem;
+}
+
+.btn-delete:hover {
+    background: var(--border);
+}
+
+.message {
+    min-height: 1.4em;
+    margin: 0 0 16px;
+    font-size: 0.9rem;
+}
+
+.message.success {
     color: var(--positive);
 }
 
-.negative {
+.message.error {
     color: var(--negative);
 }
 
 @media (max-width: 800px) {
-    .cards,
-    .grid {
+    .forms {
         grid-template-columns: 1fr;
     }
 }
