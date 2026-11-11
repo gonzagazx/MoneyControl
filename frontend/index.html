@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoneyControl</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <h1>MoneyControl</h1>
+        <input type="month" id="month">
+    </header>
+
+    <main class="container">
+        <section class="cards">
+            <article class="card">
+                <span class="card-label">Saldo</span>
+                <strong id="balance">R$ 0,00</strong>
+            </article>
+            <article class="card">
+                <span class="card-label">Receitas</span>
+                <strong id="income" class="positive">R$ 0,00</strong>
+            </article>
+            <article class="card">
+                <span class="card-label">Despesas</span>
+                <strong id="expense" class="negative">R$ 0,00</strong>
+            </article>
+        </section>
+
+        <section class="grid">
+            <article class="panel">
+                <h2>Despesas por categoria</h2>
+                <canvas id="categoryChart"></canvas>
+            </article>
+
+            <article class="panel">
+                <h2>Transações</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Data</th>
+                            <th class="right">Valor</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactions"></tbody>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
