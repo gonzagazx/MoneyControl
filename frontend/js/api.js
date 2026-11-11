@@ -1,7 +1,20 @@
 const API_URL = "http://localhost:8080";
 
 async function request(path, options) {
-    const response = await fetch(API_URL + path, options);
+    const config = options || {};
+    const headers = Object.assign({}, config.headers);
+
+    const token = getToken();
+    if (token) {
+        headers["Authorization"] = "Bearer " + token;
+    }
+
+    const response = await fetch(API_URL + path, Object.assign({}, config, { headers: headers }));
+
+    if (response.status === 401 && !path.startsWith("/auth/")) {
+        logout();
+        throw new Error("Sessão expirada. Faça login novamente.");
+    }
 
     if (response.status === 204) {
         return null;

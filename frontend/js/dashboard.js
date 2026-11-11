@@ -1,3 +1,5 @@
+requireLogin();
+
 const brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
 const monthInput = document.getElementById("month");
 const messageBox = document.getElementById("message");
@@ -188,6 +190,9 @@ document.getElementById("transactionForm").addEventListener("submit", async func
         showMessage(error.message, true);
     }
 });
+
+document.getElementById("userName").textContent = getUserName();
+document.getElementById("logoutButton").addEventListener("click", logout);
 
 monthInput.value = currentMonth();
 document.getElementById("date").value = today();

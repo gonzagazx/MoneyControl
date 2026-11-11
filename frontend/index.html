@@ -5,11 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MoneyControl</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/extra.css">
 </head>
 <body>
     <header class="topbar">
         <h1>MoneyControl</h1>
-        <input type="month" id="month">
+        <div class="topbar-actions">
+            <input type="month" id="month">
+            <span id="userName" class="user-name"></span>
+            <button type="button" id="logoutButton" class="btn-secondary">Sair</button>
+        </div>
     </header>
 
     <main class="container">
@@ -80,6 +85,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.js"></script>
+    <script src="js/session.js"></script>
     <script src="js/api.js"></script>
     <script src="js/dashboard.js"></script>
 </body>
