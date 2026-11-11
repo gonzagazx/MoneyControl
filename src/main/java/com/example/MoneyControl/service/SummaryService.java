@@ -1,5 +1,6 @@
 package com.example.MoneyControl.service;
 
+import com.example.MoneyControl.dto.CategoryTotalResponse;
 import com.example.MoneyControl.dto.SummaryResponse;
 import com.example.MoneyControl.entity.TransactionType;
 import com.example.MoneyControl.repository.TransactionRepository;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -26,5 +28,10 @@ public class SummaryService {
         BigDecimal expense = transactionRepository.sumByTypeAndPeriod(TransactionType.EXPENSE, start, end);
 
         return new SummaryResponse(income, expense, income.subtract(expense));
+    }
+
+    @Transactional(readOnly = true)
+    public List<CategoryTotalResponse> getTotalsByCategory(YearMonth month, TransactionType type) {
+        return transactionRepository.totalsByCategory(type, month.atDay(1), month.atEndOfMonth());
     }
 }
