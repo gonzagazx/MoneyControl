@@ -19,9 +19,13 @@ public class Category {
     private Long id;
 
     @Column(nullable = false, length = 100)
-    private  String name;
+    private String name;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private TransactionType type;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 }
